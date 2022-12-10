@@ -3,6 +3,8 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/venv_3" />
+      <excludeFolder url="file://$MODULE_DIR$/venv_kis" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.10 (recipe-app-api)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
