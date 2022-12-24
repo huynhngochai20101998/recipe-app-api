@@ -13,20 +13,19 @@ from django.db import models
 class UserManager(BaseUserManager):
     """Manager for users."""
 
-    def create_user(self, email, password=None, **kwargs):
-        """Create, save and return a new user."""
+    def create_user(self, email, password=None, **extra_fields):
+        """Creates and saves a new user"""
 
         if not email:
-            raise ValueError("User must have an email address.")
-
-        user = self.model(email=self.normalize_email(email), **kwargs)
+            raise ValueError('Users must have an email address')
+        user = self.model(email=self.normalize_email(email), **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
 
         return user
 
-    def create_superuser(self, email, password=None):
-        """Create and return a new superuser."""
+    def create_superuser(self, email, password):
+        """Creates and saves a new superuser"""
 
         user = self.create_user(email, password)
         user.is_staff = True
@@ -37,7 +36,7 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    """User in the System."""
+    """Custom user model that suppors using email instead of username"""
 
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
@@ -46,4 +45,4 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
-    USERNAME_FIELD = "email"
+    USERNAME_FIELD = 'email'
